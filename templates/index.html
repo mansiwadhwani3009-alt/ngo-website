@@ -1,212 +1,90 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>NGO Website</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<body>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Trapti Jan Kalyan</title>
+<meta charset="UTF-8">
+<title>Trapti Jan Kalyan</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+}
 
-        header {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+/* HERO */
+.hero {
+    background: url("{{ url_for('static', filename='images/drive1.jpeg') }}") center/cover;
+    height: 90vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 40px;
-        }
+/* SECTION */
+section {
+    padding: 40px;
+    text-align: center;
+}
 
-        section {
-            padding: 30px;
-            margin: 20px;
-            background: white;
-            border-radius: 10px;
-        }
+h2 {
+    color: #2c3e50;
+}
 
-        h2 {
-            color: #2c3e50;
-        }
+/* PROGRAMS */
+.programs {
+    display: flex;
+    justify-content: space-around;
+}
 
-        .gallery img {
-            width: 300px;
-            margin: 10px;
-            border-radius: 10px;
-        }
+.card {
+    width: 30%;
+    padding: 20px;
+    background: #ecf0f1;
+    border-radius: 10px;
+}
 
-        .about img {
-            width: 200px;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
+/* GALLERY */
+.gallery img {
+    width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+}
 
-        ul {
-            line-height: 1.8;
-        }
+/* NOTICE BOARD */
+.notice-board {
+    width: 60%;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    border: 2px solid #2c3e50;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #2c3e50;
-            color: white;
-        }
-    </style>
-</head>
+.notice-content {
+    display: inline-block;
+    animation: scrollUp 10s linear infinite;
+}
 
-<body>
+.notice-content p {
+    margin: 10px;
+}
 
-    <!-- HEADER -->
-    <header>
-        <h1>Trapti Jan Kalyan</h1>
-        <p>Empowering Lives Through Education</p>
-    </header>
+/* ANIMATION */
+@keyframes scrollUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
 
-    <!-- ABOUT NGO -->
-    <section>
-        <h2>About Us</h2>
-        <p>
-            Trapti Jan Kalyan is a dedicated non-governmental organization committed 
-            to empowering children and young women through education and skill development. 
-            We provide support, guidance, and resources to help individuals build a better future.
-        </p>
+/* FOOTER */
+footer {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+}
+</style>
 
-        <p>
-            Our NGO organizes educational drives and sewing workshops to help young girls 
-            become self-reliant and confident. We aim to support all individuals in need 
-            and uplift communities through meaningful initiatives.
-        </p>
-    </section>
-
-    <!-- GALLERY -->
-    <section class="gallery">
-        <h2>Our Drives</h2>
-        <img src="{{ url_for('static', filename='images/drive1.jpg') }}">
-        <img src="{{ url_for('static', filename='images/drive2.jpg') }}">
-        <img src="{{ url_for('static', filename='images/drive3.jpg') }}">
-    </section>
-
-    <!-- NOTICE BOARD -->
-    <section>
-        <h2>Upcoming Drives</h2>
-        <ul>
-            <li>Sewing Training Workshop – 25 March 2026</li>
-            <li>Educational Support Drive – 5 April 2026</li>
-            <li>Women Skill Development Camp – 15 April 2026</li>
-        </ul>
-    </section>
-
-    <!-- ABOUT HEAD -->
-    <section class="about">
-        <h2>Our Leader</h2>
-        <p>
-            Trapti Jan Kalyan is led by a passionate leader dedicated to improving 
-            the lives of children and women. With a strong vision for education and 
-            empowerment, the leadership continues to inspire positive change in society.
-        </p>
-
-        <img src="{{ url_for('static', filename='images/head.jpg') }}">
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Trapti Jan Kalyan | All Rights Reserved</p>
-    </footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trapti Jan Kalyan</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            background: url("{{ url_for('static', filename='images/drive1.jpg') }}") center/cover;
-            height: 90vh;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 50px;
-        }
-
-        .hero p {
-            font-size: 20px;
-        }
-
-        /* GENERAL */
-        section {
-            padding: 40px;
-            text-align: center;
-        }
-
-        h2 {
-            color: #2c3e50;
-        }
-
-        /* IMPACT SECTION */
-        .impact {
-            display: flex;
-            justify-content: space-around;
-            background: #f4f4f4;
-        }
-
-        .impact div {
-            font-size: 20px;
-        }
-
-        /* PROGRAMS */
-        .programs {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .card {
-            width: 30%;
-            padding: 20px;
-            background: #ecf0f1;
-            border-radius: 10px;
-        }
-
-        /* GALLERY */
-        .gallery img {
-            width: 300px;
-            margin: 10px;
-            border-radius: 10px;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
-        }
-    </style>
 </head>
 
 <body>
@@ -221,26 +99,10 @@
 <section>
     <h2>About Us</h2>
     <p>
-        Trapti Jan Kalyan is dedicated to empowering children and young women 
-        through education and skill development. We organize drives, provide 
-        sewing training, and support communities in need.
+        Trapti Jan Kalyan empowers children and young women through education 
+        and skill development. We organize drives, sewing workshops, and 
+        support communities in need.
     </p>
-</section>
-
-<!-- IMPACT -->
-<section class="impact">
-    <div>
-        <h3>500+</h3>
-        <p>People Helped</p>
-    </div>
-    <div>
-        <h3>20+</h3>
-        <p>Drives Conducted</p>
-    </div>
-    <div>
-        <h3>100+</h3>
-        <p>Women Empowered</p>
-    </div>
 </section>
 
 <!-- PROGRAMS -->
@@ -249,17 +111,17 @@
     <div class="programs">
         <div class="card">
             <h3>Education</h3>
-            <p>Supporting children with education and resources.</p>
+            <p>Supporting children with education.</p>
         </div>
 
         <div class="card">
             <h3>Women Empowerment</h3>
-            <p>Sewing training and skill development programs.</p>
+            <p>Sewing and skill development programs.</p>
         </div>
 
         <div class="card">
             <h3>Community Help</h3>
-            <p>Helping people in need through drives.</p>
+            <p>Helping people in need.</p>
         </div>
     </div>
 </section>
@@ -267,17 +129,24 @@
 <!-- GALLERY -->
 <section class="gallery">
     <h2>Our Drives</h2>
-    <img src="{{ url_for('static', filename='images/drive1.jpg') }}">
-    <img src="{{ url_for('static', filename='images/drive2.jpg') }}">
-    <img src="{{ url_for('static', filename='images/drive3.jpg') }}">
+    <img src="{{ url_for('static', filename='images/drive1.jpeg') }}">
+    <img src="{{ url_for('static', filename='images/drive2.jpeg') }}">
+    <img src="{{ url_for('static', filename='images/drive3.jpeg') }}">
 </section>
 
-<!-- NOTICE -->
+<!-- NOTICE BOARD -->
 <section>
     <h2>Upcoming Drives</h2>
-    <p>📍 Sewing Workshop – 25 March</p>
-    <p>📍 Education Drive – 5 April</p>
-    <p>📍 Women Training Camp – 15 April</p>
+
+    <div class="notice-board">
+        <div class="notice-content">
+            <p>📍 Sewing Workshop – 25 March 2026</p>
+            <p>📍 Education Drive – 5 April 2026</p>
+            <p>📍 Women Training Camp – 15 April 2026</p>
+            <p>📍 Community Help Drive – 20 April 2026</p>
+        </div>
+    </div>
+
 </section>
 
 <!-- FOOTER -->
