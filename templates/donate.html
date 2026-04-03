@@ -2,12 +2,77 @@
 
 {% block content %}
 
-<h2>Donate</h2>
+<div class="hero">
+    <h1>Support Our Cause ❤️</h1>
+    <p>Your contribution makes a real difference</p>
+</div>
 
-<form method="POST">
-<input name="name" placeholder="Name">
-<input name="amount" placeholder="Amount">
-<button type="submit">Donate</button>
+<section class="donation-section">
+
+<form method="POST" class="donation-form">
+
+    <h2>Make a Donation</h2>
+
+    <!-- NAME -->
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+    <!-- CAUSE -->
+    <label>Select Cause:</label>
+    <select name="cause" required>
+        <option value="">-- Choose Cause --</option>
+        <option>Education for Children</option>
+        <option>Women Empowerment</option>
+        <option>Community Help</option>
+    </select>
+
+    <!-- AMOUNT -->
+    <input type="number" name="amount" placeholder="Donation Amount (₹)" required>
+
+    <!-- PAYMENT METHOD -->
+    <label>Payment Method:</label>
+    <select id="payment" name="payment" onchange="showPayment()" required>
+        <option value="">-- Select Method --</option>
+        <option value="upi">UPI</option>
+        <option value="cash">Cash</option>
+    </select>
+
+    <!-- UPI SECTION -->
+    <div id="upi-box" class="hidden">
+        <p><b>UPI ID:</b> trapti@upi</p>
+        <p>Scan & Pay, then submit this form.</p>
+    </div>
+
+    <!-- CASH SECTION -->
+    <div id="cash-box" class="hidden">
+        <p><b>Visit our office to donate:</b></p>
+        <p>Trapti Jan Kalyan Office,<br>
+        Bhopal, Madhya Pradesh, India</p>
+    </div>
+
+    <!-- MESSAGE -->
+    <textarea name="message" placeholder="Message (optional)"></textarea>
+
+    <button type="submit">Donate Now</button>
+
 </form>
+
+</section>
+
+<script>
+function showPayment() {
+    var method = document.getElementById("payment").value;
+
+    document.getElementById("upi-box").style.display = "none";
+    document.getElementById("cash-box").style.display = "none";
+
+    if(method === "upi") {
+        document.getElementById("upi-box").style.display = "block";
+    }
+    else if(method === "cash") {
+        document.getElementById("cash-box").style.display = "block";
+    }
+}
+</script>
 
 {% endblock %}

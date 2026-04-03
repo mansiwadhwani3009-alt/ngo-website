@@ -2,13 +2,22 @@
 
 {% block content %}
 
-<h2>Volunteer</h2>
+<div class="hero">
+    <h1>Join Our Team</h1>
+</div>
 
-<form method="POST">
-<input name="name" placeholder="Name" required>
-<input name="email" placeholder="Email">
-<input name="phone" placeholder="Phone">
-<button type="submit">Register</button>
+<form method="POST" style="padding:40px; text-align:center;">
+    <input name="name" placeholder="Name" required><br><br>
+    <input name="email" placeholder="Email" required><br><br>
+    <input name="phone" placeholder="Phone" required><br><br>
+    <select name="program" required>
+    <option value="">Select Program</option>
+    <option>Education</option>
+    <option>Women Empowerment</option>
+    <option>Community Help</option>
+</select>
+    <button type="submit">Join Now</button>
+
 </form>
 
 {% endblock %}

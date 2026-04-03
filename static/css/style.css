@@ -1,54 +1,344 @@
-body{
-font-family: Arial;
-background:#f4f4f4;
-text-align:center;
-}
-
-nav a{
-margin:10px;
-text-decoration:none;
-color:#2c7be5;
-}
-
-h1{
-color:#2c7be5;
-}
+/* ================= GENERAL ================= */
 body {
-    font-family: Arial;
-    background: #f4f4f4;
     margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
 }
 
-nav {
-    background: #2c7be5;
-    padding: 15px;
+html {
+    scroll-behavior: smooth;
 }
 
-nav a {
+section {
+    padding: 60px 20px;
+}
+
+section:nth-child(odd) {
+    background: #ffffff;
+}
+
+section:nth-child(even) {
+    background: #eef3ff;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #0b3d91;
     color: white;
-    margin: 10px;
-    text-decoration: none;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 20px;
     font-weight: bold;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.nav-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-h1 {
-    color: #2c7be5;
+.nav-links a:hover {
+    color: #e63946;
 }
 
-form {
+.donate-btn {
+    background: #e63946;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.donate-btn:hover {
     background: white;
-    padding: 20px;
-    width: 300px;
-    margin: auto;
-    border-radius: 10px;
+    color: #e63946;
 }
 
-input, textarea {
+/* ================= HERO ================= */
+.hero {
+    background: linear-gradient(rgba(11,61,145,0.6), rgba(230,57,70,0.6)),
+                url("../images/drive1.jpeg") center/cover;
+    background-attachment: fixed;
+    height: 90vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.hero h1 {
+    font-size: 45px;
+    animation: fadeIn 2s ease;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    background: white;
+    color: #e63946;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    background: #e63946;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= ABOUT ================= */
+.about {
+    background: white;
+    margin: 40px auto;
+    padding: 40px;
+    width: 70%;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.about:hover {
+    transform: scale(1.02);
+}
+
+/* ================= PROGRAMS ================= */
+.programs {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    width: 280px;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    color: #0b3d91;
+}
+
+.card p {
+    color: #555;
+}
+
+/* ================= GALLERY ================= */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    margin: 15px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ================= NOTICE BOARD ================= */
+.notice-board {
+    width: 60%;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    border: 3px solid #e63946;
+    border-radius: 10px;
+    background: #f1f8ff;
+}
+
+.notice-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollUp 12s linear infinite;
+}
+
+.notice-content p {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.notice-content p:hover {
+    background: #e63946;
+    color: white;
+}
+
+@keyframes scrollUp {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-50%); }
+}
+
+/* ================= STATS ================= */
+.stats-section {
+    background: linear-gradient(135deg, #0b3d91, #e63946);
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+    margin: 40px 0;
+    border-radius: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: white;
+    color: #0b3d91;
+    padding: 30px;
+    border-radius: 15px;
+    width: 200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.stat:hover {
+    transform: translateY(-10px);
+}
+
+.stat h2 {
+    color: #e63946;
+    font-size: 40px;
+}
+
+/* ================= DONATION ================= */
+.progress-container {
+    width: 60%;
+    margin: 20px auto;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 70%;
+    background: linear-gradient(to right, #e63946, #ff6b6b);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ================= FORMS ================= */
+.donation-section {
+    display: flex;
+    justify-content: center;
+}
+
+.donation-form {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.donation-form input,
+.donation-form select,
+.donation-form textarea {
     width: 100%;
+    padding: 10px;
     margin: 10px 0;
-    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* ================= BUTTON ================= */
+button {
+    background: #0b3d91;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e63946;
+}
+
+/* ================= POPUP ================= */
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #0b3d91;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background: #0b3d91;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.social a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.social a:hover {
+    color: #e63946;
+}
+
+/* ================= BACK TO TOP ================= */
+#topBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
 }

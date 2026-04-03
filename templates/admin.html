@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+
+<h2>Volunteers</h2>
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+</tr>
+{% for v in volunteers %}
+<tr>
+<td>{{v[1]}}</td>
+<td>{{v[2]}}</td>
+<td>{{v[3]}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>Donations</h2>
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Message</th>
+</tr>
+{% for d in donations %}
+<tr>
+<td>{{d[1]}}</td>
+<td>{{d[2]}}</td>
+<td>{{d[3]}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h2>Contacts</h2>
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+</tr>
+{% for c in contacts %}
+<tr>
+<td>{{c[1]}}</td>
+<td>{{c[2]}}</td>
+<td>{{c[3]}}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

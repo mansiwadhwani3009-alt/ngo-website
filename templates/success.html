@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+    window.onload = function() {
+        showPopup("{{ message }}");
+    }
+</script>
+
+<h2 style="text-align:center;">Redirecting...</h2>
+
+<script>
+setTimeout(() => {
+    window.location.href = "/";
+}, 2000);
+</script>
+{% endblock %}

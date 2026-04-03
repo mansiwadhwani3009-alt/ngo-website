@@ -1,24 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>NGO Website</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Trapti Jan Kalyan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-<nav>
-<a href="/">Home</a>
-<a href="/about">About</a>
-<a href="/volunteer">Volunteer</a>
-<a href="/donate">Donate</a>
-<a href="/contact">Contact</a>
-<a href="/admin">Admin</a>
-</nav>
+<div class="navbar">
+    <div class="logo">Trapti Jan Kalyan</div>
 
-<hr>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#drives">Drives</a>
+        <a href="/volunteer">Volunteer</a>
+        <a href="/donate" class="donate-btn">Donate</a>
+        <a href="/admin">Admin</a>
+    </div>
+</div>
 
 {% block content %}{% endblock %}
 
+<script>
+const counters = document.querySelectorAll('.count');
+
+counters.forEach(counter => {
+    counter.innerText = '0';
+
+    const update = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = target / 100;
+
+        if (current < target) {
+            counter.innerText = Math.ceil(current + increment);
+            setTimeout(update, 30);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    update();
+});
+</script>
+
+<div id="popup" class="popup">Success! 🎉</div>
+
+<script>
+function showPopup(message) {
+    let popup = document.getElementById("popup");
+    popup.innerText = message;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+}
+</script>
+<button onclick="topFunction()" id="topBtn">↑</button>
+
+<script>
+let btn = document.getElementById("topBtn");
+
+window.onscroll = function() {
+    btn.style.display = window.scrollY > 200 ? "block" : "none";
+};
+
+function topFunction() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
