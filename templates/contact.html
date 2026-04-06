@@ -1,14 +1,19 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Us</title>
+</head>
 
-{% block content %}
+<body style="text-align:center; padding:40px;">
 
 <h2>Contact Us</h2>
 
-<form method="POST">
-<input name="name" placeholder="Name">
-<input name="email" placeholder="Email">
-<textarea name="message"></textarea>
-<button type="submit">Send</button>
+<form method="POST" action="/contact">
+    <input name="name" placeholder="Your Name" required><br><br>
+    <input name="email" placeholder="Your Email" required><br><br>
+    <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+    <button type="submit">Send</button>
 </form>
 
-{% endblock %}
+</body>
+</html>

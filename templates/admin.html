@@ -1,55 +1,102 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
 
-{% block content %}
+<style>
+body {
+    font-family: Arial;
+    background: #f4f7fb;
+    padding: 20px;
+}
 
-<h1>Admin Dashboard</h1>
+h2 {
+    text-align: center;
+    color: #333;
+}
 
-<h2>Volunteers</h2>
-<table border="1">
-<tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-</tr>
+.table-container {
+    margin: 30px auto;
+    width: 90%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tr:hover {
+    background: #ddd;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Admin Dashboard</h2>
+
+<div class="table-container">
+<h3>Volunteers</h3>
+<table>
+<tr><th>Name</th><th>Email</th><th>Phone</th><th>Program</th></tr>
 {% for v in volunteers %}
 <tr>
-<td>{{v[1]}}</td>
-<td>{{v[2]}}</td>
-<td>{{v[3]}}</td>
+<td>{{ v[1] }}</td>
+<td>{{ v[2] }}</td>
+<td>{{ v[3] }}</td>
+<td>{{ v[4] }}</td>
 </tr>
 {% endfor %}
 </table>
+</div>
 
-<h2>Donations</h2>
-<table border="1">
-<tr>
-    <th>Name</th>
-    <th>Amount</th>
-    <th>Message</th>
-</tr>
+<div class="table-container">
+<h3>Donations</h3>
+<table>
+<tr><th>Name</th><th>Email</th><th>Amount</th><th>Payment</th></tr>
 {% for d in donations %}
 <tr>
-<td>{{d[1]}}</td>
-<td>{{d[2]}}</td>
-<td>{{d[3]}}</td>
+<td>{{ d[1] }}</td>
+<td>{{ d[2] }}</td>
+<td>{{ d[4] }}</td>
+<td>{{ d[5] }}</td>
 </tr>
 {% endfor %}
 </table>
+</div>
 
-<h2>Contacts</h2>
-<table border="1">
-<tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Message</th>
-</tr>
+<div class="table-container">
+<h3>Contacts</h3>
+<table>
+<tr><th>Name</th><th>Email</th><th>Message</th></tr>
 {% for c in contacts %}
 <tr>
-<td>{{c[1]}}</td>
-<td>{{c[2]}}</td>
-<td>{{c[3]}}</td>
+<td>{{ c[1] }}</td>
+<td>{{ c[2] }}</td>
+<td>{{ c[3] }}</td>
 </tr>
 {% endfor %}
 </table>
+</div>
 
-{% endblock %}
+</body>
+</html>

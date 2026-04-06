@@ -14,17 +14,17 @@
     <h2>Make a Donation</h2>
 
     <!-- NAME -->
-    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="text" name="name" required>
 
-    <input type="email" name="email" placeholder="Your Email" required>
-    <!-- CAUSE -->
-    <label>Select Cause:</label>
-    <select name="cause" required>
-        <option value="">-- Choose Cause --</option>
-        <option>Education for Children</option>
-        <option>Women Empowerment</option>
-        <option>Community Help</option>
-    </select>
+<input type="email" name="email" required>
+
+<input type="number" name="amount" min="1" required>
+
+<select name="payment" required>
+  <option value="">Select Payment</option>
+  <option value="UPI">UPI</option>
+  <option value="Card">Card</option>
+</select>
 
     <!-- AMOUNT -->
     <input type="number" name="amount" placeholder="Donation Amount (₹)" required>

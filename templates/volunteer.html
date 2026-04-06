@@ -6,15 +6,17 @@
     <h1>Join Our Team</h1>
 </div>
 
-<form method="POST" style="padding:40px; text-align:center;">
-    <input name="name" placeholder="Name" required><br><br>
-    <input name="email" placeholder="Email" required><br><br>
-    <input name="phone" placeholder="Phone" required><br><br>
-    <select name="program" required>
-    <option value="">Select Program</option>
-    <option>Education</option>
-    <option>Women Empowerment</option>
-    <option>Community Help</option>
+<input type="text" name="name" placeholder="Name" required minlength="3">
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="tel" name="phone" placeholder="Phone" 
+       pattern="[0-9]{10}" title="Enter 10 digit phone number" required>
+
+<select name="program" required>
+  <option value="">Select Program</option>
+  <option value="Education">Education</option>
+  <option value="Health">Health</option>
 </select>
     <button type="submit">Join Now</button>
 

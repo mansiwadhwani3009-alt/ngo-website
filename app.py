@@ -98,6 +98,8 @@ def volunteer():
         return render_template("success.html", message="Registration Successful!")
 
     return render_template("volunteer.html")
+if not name or not email or not phone or not program:
+    return "All fields are required!" 
 
 # Donation Form
 @app.route('/donate', methods=['GET', 'POST'])
@@ -124,9 +126,11 @@ def donate():
         return render_template("success.html", message="Donation Successful!")
 
     return render_template("donate.html")
+if not name or not email or not amount:
+    return "Please fill all required fields!"
 
 # Contact Form
-@app.route('/contact', methods=['POST'])
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     name = request.form['name']
     email = request.form['email']
@@ -144,7 +148,10 @@ def contact():
     conn.close()
 
     return render_template("success.html", message="Message Sent!")
+if request.method == 'POST':
+    # existing code
 
+return render_template("contact.html")
 # Admin Panel
 @app.route('/admin')
 def admin():
