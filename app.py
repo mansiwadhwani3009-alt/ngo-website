@@ -132,26 +132,25 @@ if not name or not email or not amount:
 # Contact Form
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    name = request.form['name']
-    email = request.form['email']
-    message = request.form['message']
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
 
-    conn = get_db_connection()
-    cursor = conn.cursor()
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-    cursor.execute(
-        "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
-        (name, email, message)
-    )
+        cursor.execute(
+            "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+            (name, email, message)
+        )
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
-    return render_template("success.html", message="Message Sent!")
-if request.method == 'POST':
-    # existing code
+        return render_template("success.html", message="Message Sent!")
 
-return render_template("contact.html")
+    return render_template("contact.html")
 # Admin Panel
 @app.route('/admin')
 def admin():
