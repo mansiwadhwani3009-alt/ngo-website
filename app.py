@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import sqlite3
-import smtplib
 
 app = Flask(__name__)
 
@@ -26,7 +25,7 @@ def create_tables():
     )
     """)
 
-    # Donations table (FIXED)
+    # Donations table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS donations (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -51,23 +50,9 @@ def create_tables():
 
     conn.commit()
     conn.close()
+
 # Call once
 create_tables()
-
-# ---------------- EMAIL FUNCTION ----------------
-#def send_email(to_email, subject, message):
- #   sender_email = "your_email@gmail.com"
-  #  password = "your_app_password"
-
-   # try:
-    #   server.starttls()
-     #   server.login(sender_email, password)
-
-      #  email_message = f"Subject: {subject}\n\n{message}"
-       # server.sendmail(sender_email, to_email, email_message)
-
-        #server.quit()
-    ##   print("Email error:", e)
 
 # ---------------- ROUTES ----------------
 
@@ -84,6 +69,9 @@ def volunteer():
         phone = request.form['phone']
         program = request.form['program']
 
+        if not name or not email or not phone or not program:
+            return "All fields are required!"
+
         conn = get_db_connection()
         cursor = conn.cursor()
 
@@ -98,8 +86,7 @@ def volunteer():
         return render_template("success.html", message="Registration Successful!")
 
     return render_template("volunteer.html")
-if not name or not email or not phone or not program:
-    return "All fields are required!" 
+
 
 # Donation Form
 @app.route('/donate', methods=['GET', 'POST'])
@@ -112,12 +99,15 @@ def donate():
         payment = request.form['payment']
         message = request.form['message']
 
+        if not name or not email or not amount:
+            return "Please fill all required fields!"
+
         conn = get_db_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-        "INSERT INTO donations (name, email, cause, amount, payment, message) VALUES (?, ?, ?, ?, ?, ?)",
-        (name, email, cause, amount, payment, message)
+            "INSERT INTO donations (name, email, cause, amount, payment, message) VALUES (?, ?, ?, ?, ?, ?)",
+            (name, email, cause, amount, payment, message)
         )
 
         conn.commit()
@@ -126,8 +116,7 @@ def donate():
         return render_template("success.html", message="Donation Successful!")
 
     return render_template("donate.html")
-if not name or not email or not amount:
-    return "Please fill all required fields!"
+
 
 # Contact Form
 @app.route('/contact', methods=['GET', 'POST'])
@@ -151,6 +140,8 @@ def contact():
         return render_template("success.html", message="Message Sent!")
 
     return render_template("contact.html")
+
+
 # Admin Panel
 @app.route('/admin')
 def admin():
@@ -172,6 +163,7 @@ def admin():
                            volunteers=volunteers,
                            donations=donations,
                            contacts=contacts)
+
 
 if __name__ == "__main__":
     app.run()
