@@ -331,6 +331,14 @@ section:nth-child(even) {
     font-size: 40px;
 }
 
+.form-container {
+    width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 /* ================= DONATION ================= */
 .progress-container {
     width: 60%;
@@ -487,4 +495,57 @@ button {
 
 button:hover {
     background: #45a049;
+}
+
+/* ================= FIX FORM VISIBILITY ================= */
+
+input, select, textarea {
+    width: 100% !important;
+    padding: 12px !important;
+    margin: 10px 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid #ccc !important;
+
+    background-color: #ffffff !important;   /* FIX: visible background */
+    color: #000000 !important;              /* FIX: visible text */
+    font-size: 16px;
+}
+
+/* Placeholder fix */
+input::placeholder,
+textarea::placeholder {
+    color: #666 !important;
+    opacity: 1;
+}
+
+/* ================= FIX VOLUNTEER FORM LAYOUT ================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* ================= FIX DONATION FORM ================= */
+
+.donation-form {
+    width: 400px;
+    margin: 40px auto;
+}
+
+/* ================= FIX BUTTON LOOK ================= */
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* ================= OPTIONAL PREMIUM TOUCH ================= */
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border: 2px solid #0b3d91;
+    box-shadow: 0 0 5px rgba(11,61,145,0.3);
 }
