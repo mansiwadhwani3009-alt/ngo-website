@@ -15,6 +15,7 @@ def create_tables():
     conn = get_db_connection()
     cursor = conn.cursor()
 
+    # Volunteers table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS volunteers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,18 +26,20 @@ def create_tables():
     )
     """)
 
+    # Donations table (FIXED)
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS donations (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    email TEXT,
-    cause TEXT,
-    amount TEXT,
-    payment TEXT,
-    message TEXT
-)
-""")
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        cause TEXT,
+        amount TEXT,
+        payment TEXT,
+        message TEXT
+    )
+    """)
 
+    # Contacts table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS contacts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,7 +51,6 @@ def create_tables():
 
     conn.commit()
     conn.close()
-
 # Call once
 create_tables()
 
