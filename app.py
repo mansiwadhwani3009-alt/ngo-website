@@ -1,42 +1,76 @@
-from flask import Flask, render_template, request, redirect
-import mysql.connector
+from flask import Flask, render_template, request
+import sqlite3
 import smtplib
 
 app = Flask(__name__)
 
-# Database connection (XAMPP)
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="ngo_db"
-)
-cursor = db.cursor()
+# ---------------- DATABASE FUNCTION ----------------
+def get_db_connection():
+    conn = sqlite3.connect("database.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# ---------------- CREATE TABLES ----------------
+def create_tables():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS volunteers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        phone TEXT,
+        program TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS donations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        cause TEXT,
+        amount TEXT,
+        payment TEXT,
+        message TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS contacts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        message TEXT
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
+# Call once
+create_tables()
 
 # ---------------- EMAIL FUNCTION ----------------
-def send_email(to_email, subject, message):
-    sender_email = "your_email@gmail.com"
-    password = "your_app_password"
+#def send_email(to_email, subject, message):
+ #   sender_email = "your_email@gmail.com"
+  #  password = "your_app_password"
 
-    try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_email, password)
+   # try:
+    #   server.starttls()
+     #   server.login(sender_email, password)
 
-        email_message = f"Subject: {subject}\n\n{message}"
-        server.sendmail(sender_email, to_email, email_message)
+      #  email_message = f"Subject: {subject}\n\n{message}"
+       # server.sendmail(sender_email, to_email, email_message)
 
-        server.quit()
-    except Exception as e:
-        print("Email error:", e)
+        #server.quit()
+    ##   print("Email error:", e)
 
 # ---------------- ROUTES ----------------
 
-# Home
 @app.route('/')
 def home():
     return render_template("index.html")
-
 
 # Volunteer Form
 @app.route('/volunteer', methods=['GET', 'POST'])
@@ -47,46 +81,46 @@ def volunteer():
         phone = request.form['phone']
         program = request.form['program']
 
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
         cursor.execute(
-            "INSERT INTO volunteers (name, email, phone, program) VALUES (%s, %s, %s, %s)",
+            "INSERT INTO volunteers (name, email, phone, program) VALUES (?, ?, ?, ?)",
             (name, email, phone, program)
         )
-        db.commit()
 
-        # Send confirmation email
-        #send_email(email, "Registration Successful",
-                  # "Thank you for joining Trapti Jan Kalyan as a volunteer!")
+        conn.commit()
+        conn.close()
 
         return render_template("success.html", message="Registration Successful!")
 
     return render_template("volunteer.html")
-
 
 # Donation Form
 @app.route('/donate', methods=['GET', 'POST'])
 def donate():
     if request.method == 'POST':
         name = request.form['name']
-        email = request.form['email']   # IMPORTANT
+        email = request.form['email']
         cause = request.form['cause']
         amount = request.form['amount']
         payment = request.form['payment']
         message = request.form['message']
 
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
         cursor.execute(
-            "INSERT INTO donations (name, cause, amount, payment, message) VALUES (%s, %s, %s, %s, %s)",
+            "INSERT INTO donations (name, cause, amount, payment, message) VALUES (?, ?, ?, ?, ?)",
             (name, cause, amount, payment, message)
         )
-        db.commit()
 
-        # Send confirmation email
-        #send_email(email, "Donation Successful",
-                  # "Thank you for your generous donation!")
+        conn.commit()
+        conn.close()
 
         return render_template("success.html", message="Donation Successful!")
 
     return render_template("donate.html")
-
 
 # Contact Form
 @app.route('/contact', methods=['POST'])
@@ -95,18 +129,25 @@ def contact():
     email = request.form['email']
     message = request.form['message']
 
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
     cursor.execute(
-        "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
+        "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
         (name, email, message)
     )
-    db.commit()
+
+    conn.commit()
+    conn.close()
 
     return render_template("success.html", message="Message Sent!")
-
 
 # Admin Panel
 @app.route('/admin')
 def admin():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
     cursor.execute("SELECT * FROM volunteers")
     volunteers = cursor.fetchall()
 
@@ -116,11 +157,12 @@ def admin():
     cursor.execute("SELECT * FROM contacts")
     contacts = cursor.fetchall()
 
+    conn.close()
+
     return render_template("admin.html",
                            volunteers=volunteers,
                            donations=donations,
                            contacts=contacts)
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
