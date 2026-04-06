@@ -27,14 +27,15 @@ def create_tables():
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS donations (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        cause TEXT,
-        amount TEXT,
-        payment TEXT,
-        message TEXT
-    )
-    """)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT,
+    cause TEXT,
+    amount TEXT,
+    payment TEXT,
+    message TEXT
+)
+""")
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS contacts (
@@ -111,8 +112,8 @@ def donate():
         cursor = conn.cursor()
 
         cursor.execute(
-            "INSERT INTO donations (name, cause, amount, payment, message) VALUES (?, ?, ?, ?, ?)",
-            (name, cause, amount, payment, message)
+        "INSERT INTO donations (name, email, cause, amount, payment, message) VALUES (?, ?, ?, ?, ?, ?)",
+        (name, email, cause, amount, payment, message)
         )
 
         conn.commit()
